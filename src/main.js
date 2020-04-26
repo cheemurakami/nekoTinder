@@ -5,14 +5,12 @@ import $ from "jquery";
 import { NekoPicApiCall } from './nekopicApi.js';
 
 
+function randomNumber(max){
+  return Math.floor(Math.random() * Math.floor(max));
+}
 $(document).ready(function () {
-  
   $(".start").click(function () {
     NekoPicApiCall().then(function (response) {
-      console.log(response)
-      function randomNumber(max){
-        return Math.floor(Math.random() * Math.floor(max));
-      }
       if (response){
         let index = randomNumber(parseInt(response.data.length));
         let gifLink = response.data[index].images.downsized_large.url;
