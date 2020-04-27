@@ -9,14 +9,8 @@ function randomNumber(max){
   return Math.floor(Math.random() * Math.floor(max));
 }
 $(document).ready(function () {
-  let matcher = new Matcher();
-  if (matcher.isMutual()) {
-    console.log("Likes you back!!");
-  } else {
-    console.log("Aww not mutual");
-  }
   $(".start").click(function () {
-    NekoPicApiCall().then(function (response) {
+    $(".buttons").show(); NekoPicApiCall().then(function (response) {
       if (response){
         let index = randomNumber(parseInt(response.data.length));
         let gifLink = response.data[index].images.downsized_large.url;
@@ -26,5 +20,24 @@ $(document).ready(function () {
       }
     });
   });
+  $("#yes").click(function(){
+    let matcher = new Matcher();
+    if (matcher.isMutual()) {
+      $(".message").text("Likes you back!!");
+    } else {
+      $(".message").text("Aww not mutual");
+    }
+  });
+  $("#no").click(function(){
+    NekoPicApiCall().then(function (response) {
+      if (response){
+        let index = randomNumber(parseInt(response.data.length));
+        let gifLink = response.data[index].images.downsized_large.url;
+        $(".start").html(`<img src=${gifLink}>`);
+      } else {
+        $(".start").text("There was an error handling your request.");
+      }
+    });
+  })
 });
 
