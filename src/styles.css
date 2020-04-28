@@ -1,3 +1,18 @@
+body{
+  text-align: center;
+  background: #ffe6e6;
+}
+.start{
+  width: 10vw;
+  height: 10vh;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
 .buttons{
   display: none;
+}
+.neko-pic{
+  width: 480px;
+  height: 480px;
 }
